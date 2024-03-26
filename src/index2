@@ -1,0 +1,33 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+
+function Car( props )
+{
+  return <li>i am a { props.brand } </li>;
+}
+
+function Garage()
+{
+
+  const cars = ["renaul", "mercedes"];
+
+  return (
+
+    <>
+      <p>quien vive en el Garage</p>
+
+      <ul>
+
+      {cars.map( ( car ) => <Car brand = {car} /> )}
+      
+      </ul>
+    </>
+
+    );
+}
+
+
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot( container );
+root.render( <Garage />);

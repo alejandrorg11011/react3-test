@@ -1,0 +1,32 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import Car from './Car.js';
+
+function Football() {
+
+  const shoot = (a, b) => {
+    console.log( b );
+    alert(b.type);
+  }
+
+  return (
+    <button onClick={ (event) => shoot("goal", event) }>Take the shot!</button>
+  );
+}
+
+const html = (
+
+  <>
+    <p>hola</p>
+
+    <Car brand="ford" />
+  </>
+
+);
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<Car brand="ford" />);
+root.render(<Football />);

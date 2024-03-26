@@ -1,0 +1,51 @@
+import {useState} from "react";
+
+import ReactDOM from "react-dom/client";
+
+
+function FavouriteColour()
+{
+  // const [color, setColor] = useState("rojo");
+  // const [color2, setColor2] = useState("verde");
+  // const [color3, setColor3] = useState("amarillo");
+
+  const [color, setColor] = useState({
+    color: "rojo",
+    color2: "verde",
+    color3: "amarillo"
+  });
+
+
+  // const actualizar = () => {
+
+  //   setColor( (objeto) =>{
+  //     return { ...objeto, color: "azul"}
+  //   });
+
+  // }
+
+  return (
+    <>
+      <h2>mi color favorito es {color.color}</h2>
+
+      <h2 style={{color:"red",fontSize:"12px"}}>mi color2 favorito es {color.color2}</h2>
+
+
+      <button
+        type="button"
+        onClick={ () => setColor( {...color, color:"azul"}) }>
+        Azul color 1</button>
+
+    </>
+    );
+}
+
+
+
+
+
+const container = document.getElementById("root");
+
+const root = ReactDOM.createRoot( container );
+
+root.render( <FavouriteColour />);

@@ -1,0 +1,48 @@
+import { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+
+function MyForm() {
+
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = ( jamon ) => {
+
+    const name = jamon.target.name;
+    const value = jamon.target.value;
+
+    setInputs( ( datos ) => { return {...datos, [name]:value } } );
+    // setInputs( values => ( {...values, [name]: value} ) )
+  }
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name you entered was: ${inputs.username}`)
+  }
+
+
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+        <input 
+          type="text"
+          name = "username" 
+          value={ inputs.username || ""}
+          // onChange={ (datos ) => setName(datos.target.value) }
+          onChange = { handleChange }
+        />
+
+        <input 
+         type="number"
+         name = "age"
+         value = {inputs.age || ""}
+         onChange = { handleChange } />
+      </label>
+      <input type="submit" />
+    </form>
+  )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<MyForm />);
