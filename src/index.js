@@ -1,35 +1,28 @@
-import ReactDOM from "react-dom/client";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { useState } from 'react';
+import ReactDOM from 'react-dom/client';
 
-import Layout from "./pages/Layout";
-import Home from "./pages/Home";
+function MyForm() {
 
-import Blogs from "./pages/Blogs";
-import Contact from "./pages/Contact";
-import NoPage from "./pages/NoPage";
+  const [name, setName] = useState("");
 
-function App()
-{
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name you entered was: ${name}`)
+  }
+
   return (
-      <BrowserRouter>
-        
-        <Routes>
-
-          <Route path="/" element={<Layout />}>
-
-            <Route index element={ <Home /> } />
-
-            <Route path="blogs" element={<Blogs />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="*" element={<NoPage />} />
-
-          </Route>
-        </Routes>
-
-      </BrowserRouter>
-    );
+    <form>
+      <label>Enter your name:
+        <input 
+          type="text" 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <input type="submit" />
+    </form>
+  )
 }
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<MyForm />);
