@@ -1,28 +1,32 @@
-import { useState } from 'react';
-import ReactDOM from 'react-dom/client';
+import { useState, useCallback } from "react";
+import ReactDOM from "react-dom/client";
+import Todos from "./Todos";
 
-function MyForm() {
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState(["todo 1", "todo 2"]);
 
-  const [name, setName] = useState("");
+  const increment = () => {
+    setCount((c) => c + 1);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`The name you entered was: ${name}`)
+  const addTodo = useCallback(  () =>{
+    setTodos( ( t ) => [...t, "new todo"] );
   }
+  , [todos]);
+
 
   return (
-    <form>
-      <label>Enter your name:
-        <input 
-          type="text" 
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <input type="submit" />
-    </form>
-  )
-}
+    <>
+      <Todos todos={todos} addTodo={addTodo} />
+      <hr />
+      <div>
+        Count: {count}
+        <button onClick={increment}>+</button>
+      </div>
+    </>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<MyForm />);
+root.render(<App />);
